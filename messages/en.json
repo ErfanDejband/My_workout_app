@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "Workout Tracker",
+    "tagline": "Your personalized weekly workout plan, powered by the AI you already use."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "newPlan": "New plan",
+    "settings": "Settings",
+    "signIn": "Sign in with Google",
+    "continueWithoutAccount": "Continue without an account"
+  },
+  "landing": {
+    "getStarted": "Get started",
+    "howItWorks": "How it works",
+    "step1": "Tell us your goal and stats",
+    "step2": "Copy the prompt into your AI (or paste your API token)",
+    "step3": "Paste the plan back — we turn it into a trackable week"
+  },
+  "units": {
+    "metric": "Metric (kg, cm)",
+    "imperial": "Imperial (lb, ft/in)"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "zh-Hant": "繁體中文"
+  },
+  "common": {
+    "save": "Save",
+    "approve": "Approve",
+    "edit": "Edit",
+    "done": "Done",
+    "loading": "Loading…"
+  }
+}

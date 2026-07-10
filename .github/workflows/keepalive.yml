@@ -1,0 +1,21 @@
+name: Supabase keep-alive
+
+# Pings the app's keepalive endpoint so the free Supabase tier does not pause
+# after ~7 days of inactivity (docs/Project/src/structure.md §11).
+
+on:
+  schedule:
+    - cron: '0 6 */3 * *' # every 3 days at 06:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl keepalive endpoint
+        run: |
+          if [ -z "${{ secrets.KEEPALIVE_URL }}" ]; then
+            echo "KEEPALIVE_URL secret not set; skipping."
+            exit 0
+          fi
+          curl -fsS "${{ secrets.KEEPALIVE_URL }}" && echo "\nOK"

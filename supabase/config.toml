@@ -1,0 +1,11 @@
+# Minimal Supabase CLI config. Run `supabase init` to regenerate/extend.
+# project_id is set by `supabase link` against your hosted project.
+project_id = "my-workout-app"
+
+[db]
+major_version = 15
+
+[auth]
+# Google OAuth is configured in the Supabase dashboard (Auth > Providers).
+# Set the site URL and redirect URLs there and via NEXT_PUBLIC_SITE_URL.
+enable_signup = true

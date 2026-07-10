@@ -1,0 +1,34 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Supabase",
+    "keepalive",
+    "recomp",
+    "timestamptz",
+    "ciphertext",
+    "gcal",
+    "zod",
+    "jsdelivr",
+    "pnpm",
+    "nvmrc",
+    "Tailwind",
+    "shadcn",
+    "Recharts",
+    "yuhonas",
+    "exercisedb",
+    "dumbbells",
+    "gen",
+    "uuid",
+    "jsonb",
+    "hypertrophy",
+    "Bulgarian",
+    "Romanian"
+  ],
+  "flagWords": [],
+  "ignorePaths": [
+    "node_modules/**",
+    ".next/**",
+    "supabase/migrations/**"
+  ]
+}

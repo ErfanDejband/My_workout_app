@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "健身追蹤",
+    "tagline": "運用您慣用的 AI，打造專屬的每週健身計畫。"
+  },
+  "nav": {
+    "dashboard": "儀表板",
+    "newPlan": "新計畫",
+    "settings": "設定",
+    "signIn": "使用 Google 登入",
+    "continueWithoutAccount": "不註冊帳號直接使用"
+  },
+  "landing": {
+    "getStarted": "開始使用",
+    "howItWorks": "運作方式",
+    "step1": "告訴我們您的目標與身體數據",
+    "step2": "將提示詞複製到您的 AI（或貼上您的 API 權杖）",
+    "step3": "把計畫貼回來 — 我們會轉換成可追蹤的一週"
+  },
+  "units": {
+    "metric": "公制（公斤、公分）",
+    "imperial": "英制（磅、英尺／英寸）"
+  },
+  "language": {
+    "label": "語言",
+    "en": "English",
+    "zh-Hant": "繁體中文"
+  },
+  "common": {
+    "save": "儲存",
+    "approve": "確認",
+    "edit": "編輯",
+    "done": "完成",
+    "loading": "載入中…"
+  }
+}
