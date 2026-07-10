@@ -8,6 +8,7 @@
     "newPlan": "新計畫",
     "settings": "設定",
     "signIn": "使用 Google 登入",
+    "signOut": "登出",
     "continueWithoutAccount": "不註冊帳號直接使用"
   },
   "landing": {
@@ -17,9 +18,62 @@
     "step2": "將提示詞複製到您的 AI（或貼上您的 API 權杖）",
     "step3": "把計畫貼回來 — 我們會轉換成可追蹤的一週"
   },
+  "login": {
+    "title": "歡迎",
+    "subtitle": "登入以儲存您的計畫與進度，或不註冊帳號先行體驗。",
+    "google": "使用 Google 登入",
+    "trial": "不註冊帳號直接使用",
+    "trialHint": "在您登入之前，資料只會保存在這個瀏覽器中。",
+    "error": "登入失敗，請再試一次。"
+  },
+  "onboarding": {
+    "title": "關於您",
+    "subtitle": "我們會依此為您制定計畫。您隨時可以在設定中修改。",
+    "goal": "目標",
+    "sex": "性別",
+    "age": "年齡",
+    "height": "身高",
+    "weight": "體重",
+    "daysPerWeek": "每週訓練天數",
+    "sessionMinutes": "每次訓練分鐘數",
+    "experience": "經驗程度",
+    "equipment": "可用器材",
+    "limitations": "傷病／限制（選填）",
+    "unitSystem": "單位",
+    "submit": "儲存並繼續",
+    "saving": "儲存中…",
+    "goalOptions": {
+      "recomp": "減脂並增肌",
+      "fat_loss": "減脂",
+      "muscle_gain": "增肌"
+    },
+    "sexOptions": {
+      "male": "男性",
+      "female": "女性",
+      "other": "其他"
+    },
+    "experienceOptions": {
+      "beginner": "初學者",
+      "intermediate": "中階",
+      "advanced": "進階"
+    },
+    "equipmentOptions": {
+      "gym": "完整健身房",
+      "home_dumbbells": "家用啞鈴",
+      "bodyweight": "僅徒手"
+    }
+  },
+  "dashboard": {
+    "title": "儀表板",
+    "welcome": "歡迎回來",
+    "completeProfile": "完成個人資料設定即可產生計畫。",
+    "goToOnboarding": "完成個人資料",
+    "noPlan": "您尚未建立任何計畫。",
+    "createPlan": "建立您的計畫"
+  },
   "units": {
     "metric": "公制（公斤、公分）",
-    "imperial": "英制（磅、英尺／英寸）"
+    "imperial": "英制（磅、英寸）"
   },
   "language": {
     "label": "語言",

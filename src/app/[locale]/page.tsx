@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 
 export default async function LandingPage({
   params
@@ -31,9 +32,12 @@ export default async function LandingPage({
       </section>
 
       <div>
-        <button className="rounded-lg bg-neutral-900 px-5 py-2.5 font-medium text-white dark:bg-white dark:text-neutral-900">
+        <Link
+          href="/login"
+          className="inline-block rounded-lg bg-neutral-900 px-5 py-2.5 font-medium text-white dark:bg-white dark:text-neutral-900"
+        >
           {t('landing.getStarted')}
-        </button>
+        </Link>
       </div>
     </main>
   );

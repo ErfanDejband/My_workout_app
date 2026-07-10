@@ -8,6 +8,7 @@
     "newPlan": "New plan",
     "settings": "Settings",
     "signIn": "Sign in with Google",
+    "signOut": "Sign out",
     "continueWithoutAccount": "Continue without an account"
   },
   "landing": {
@@ -17,9 +18,62 @@
     "step2": "Copy the prompt into your AI (or paste your API token)",
     "step3": "Paste the plan back — we turn it into a trackable week"
   },
+  "login": {
+    "title": "Welcome",
+    "subtitle": "Sign in to save your plan and progress, or try it without an account.",
+    "google": "Sign in with Google",
+    "trial": "Continue without an account",
+    "trialHint": "Your data stays in this browser until you sign in.",
+    "error": "Sign-in failed. Please try again."
+  },
+  "onboarding": {
+    "title": "About you",
+    "subtitle": "We use this to build your plan. You can change it anytime in settings.",
+    "goal": "Goal",
+    "sex": "Sex",
+    "age": "Age",
+    "height": "Height",
+    "weight": "Weight",
+    "daysPerWeek": "Training days per week",
+    "sessionMinutes": "Minutes per session",
+    "experience": "Experience level",
+    "equipment": "Available equipment",
+    "limitations": "Injuries / limitations (optional)",
+    "unitSystem": "Units",
+    "submit": "Save and continue",
+    "saving": "Saving…",
+    "goalOptions": {
+      "recomp": "Lose fat & gain muscle",
+      "fat_loss": "Lose fat",
+      "muscle_gain": "Gain muscle"
+    },
+    "sexOptions": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "experienceOptions": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "equipmentOptions": {
+      "gym": "Full gym",
+      "home_dumbbells": "Home dumbbells",
+      "bodyweight": "Bodyweight only"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "completeProfile": "Finish setting up your profile to generate a plan.",
+    "goToOnboarding": "Complete profile",
+    "noPlan": "You don't have a plan yet.",
+    "createPlan": "Create your plan"
+  },
   "units": {
     "metric": "Metric (kg, cm)",
-    "imperial": "Imperial (lb, ft/in)"
+    "imperial": "Imperial (lb, in)"
   },
   "language": {
     "label": "Language",
