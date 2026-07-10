@@ -1,12 +1,13 @@
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './src/i18n/routing';
+import { routing } from './i18n/routing';
 
 // Handles locale detection + locale-prefixed routing.
+// Must live in src/ (not the project root) because the app uses a src directory.
 // NOTE (auth agent): Supabase session refresh will be composed into this
 // middleware later so protected routes can read the session at the edge.
 export default createMiddleware(routing);
 
 export const config = {
   // Match all paths except api, static files, and Next internals.
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: ['/', '/((?!api|_next|_vercel|.*\\..*).*)']
 };
