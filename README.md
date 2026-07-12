@@ -24,7 +24,7 @@ Open http://localhost:3000 — you'll be redirected to a locale (`/en` or `/zh-H
 
 ### Environment
 See `.env.local.example`. You need a Supabase project (URL + anon key), a
-service-role key, and a 32-byte `TOKEN_ENC_KEY` for encrypting AI tokens.
+service-role key, and a 32-byte `TOKEN_ENC_KEY` for encrypting AI tokens..
 
 ### Database
 Apply the schema in `supabase/migrations/` to your Supabase project via the
