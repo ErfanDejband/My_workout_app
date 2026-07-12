@@ -71,6 +71,25 @@
     "noPlan": "You don't have a plan yet.",
     "createPlan": "Create your plan"
   },
+  "calendar": {
+    "title": "This week",
+    "loading": "Loading your week…",
+    "empty": "No active plan yet."
+  },
+  "day": {
+    "loading": "Loading your workout…",
+    "backToDashboard": "Back to dashboard",
+    "progress": "{done}/{total} done",
+    "markDone": "Mark done",
+    "setsReps": "{sets} × {reps}",
+    "rest": "{sec}s rest",
+    "emptyRest": "Rest / recovery day. Take it easy today.",
+    "emptyNoExercises": "No exercises scheduled for this day.",
+    "emptyNoPlan": "No active plan for this day.",
+    "detailMuscle": "Primary muscle",
+    "detailHowTo": "How to",
+    "detailNotes": "Notes"
+  },
   "plan": {
     "newTitle": "Create your plan",
     "step1Title": "1. Copy this prompt",
@@ -113,6 +132,11 @@
     "label": "Language",
     "en": "English",
     "zh-Hant": "繁體中文"
+  },
+  "theme": {
+    "toggle": "Toggle light/dark theme",
+    "light": "Light",
+    "dark": "Dark"
   },
   "common": {
     "save": "Save",

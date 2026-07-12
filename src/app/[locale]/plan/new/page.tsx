@@ -8,6 +8,10 @@ import { buildPrompt, type PlanProfile } from '@/lib/ai/prompt';
 import { parsePlanResponse } from '@/lib/parser/parse';
 import type { Plan } from '@/lib/parser/schema';
 import PlanReviewForm from '@/components/PlanReviewForm';
+import AppShell from '@/components/ui/AppShell';
+import Card from '@/components/ui/Card';
+import Button, { buttonStyles } from '@/components/ui/Button';
+import Textarea from '@/components/ui/Textarea';
 
 const GOAL_TEXT: Record<string, string> = {
   recomp: 'lose fat and gain muscle (body recomposition)',
@@ -195,74 +199,68 @@ export default function NewPlanPage() {
 
   if (stage === 'loading') {
     return (
-      <main className="mx-auto max-w-2xl px-6 py-16 text-neutral-500">
-        {t('loadingProfile')}
-      </main>
+      <AppShell size="md">
+        <p className="text-neutral-500">{t('loadingProfile')}</p>
+      </AppShell>
     );
   }
 
   if (stage === 'noProfile') {
     return (
-      <main className="mx-auto max-w-2xl px-6 py-16">
-        <p className="mb-4 text-neutral-700 dark:text-neutral-300">
-          {t('needProfile')}
-        </p>
-        <Link
-          href="/onboarding"
-          className="inline-block rounded-lg bg-neutral-900 px-4 py-2 font-medium text-white dark:bg-white dark:text-neutral-900"
-        >
-          {t('goToOnboarding')}
-        </Link>
-      </main>
+      <AppShell size="md">
+        <Card className="flex flex-col items-start gap-4">
+          <p className="text-neutral-700 dark:text-neutral-300">{t('needProfile')}</p>
+          <Link href="/onboarding" className={buttonStyles()}>
+            {t('goToOnboarding')}
+          </Link>
+        </Card>
+      </AppShell>
     );
   }
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-12">
-      <h1 className="mb-8 text-3xl font-bold tracking-tight">{t('newTitle')}</h1>
+    <AppShell size="md">
+      <h1 className="mb-8 font-display text-3xl font-bold tracking-tight">
+        {t('newTitle')}
+      </h1>
 
       {stage === 'intake' && (
         <div className="space-y-8">
-          <section className="space-y-3">
+          <Card className="space-y-4">
             <div>
-              <h2 className="text-lg font-semibold">{t('step1Title')}</h2>
+              <h2 className="font-display text-lg font-bold tracking-tight">
+                {t('step1Title')}
+              </h2>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 {t('step1Intro')}
               </p>
             </div>
-            <pre className="max-h-64 overflow-auto rounded-xl border border-neutral-200 bg-neutral-50 p-4 text-xs whitespace-pre-wrap dark:border-neutral-800 dark:bg-neutral-900">
+            <pre className="max-h-64 overflow-auto whitespace-pre-wrap rounded-xl border border-neutral-200 bg-neutral-50 p-4 text-xs dark:border-neutral-800 dark:bg-neutral-950">
               {prompt}
             </pre>
-            <button
-              onClick={copyPrompt}
-              className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white dark:bg-white dark:text-neutral-900"
-            >
+            <Button variant={copied ? 'secondary' : 'primary'} onClick={copyPrompt}>
               {copied ? t('copied') : t('copyPrompt')}
-            </button>
-          </section>
+            </Button>
+          </Card>
 
-          <section className="space-y-3">
-            <h2 className="text-lg font-semibold">{t('step2Title')}</h2>
-            <textarea
+          <Card className="space-y-4">
+            <h2 className="font-display text-lg font-bold tracking-tight">
+              {t('step2Title')}
+            </h2>
+            <Textarea
               value={pasted}
               onChange={(e) => setPasted(e.target.value)}
               rows={10}
               placeholder={t('pastePlaceholder')}
-              className="w-full rounded-xl border border-neutral-300 bg-transparent px-3 py-2 font-mono text-xs dark:border-neutral-700"
+              className="font-mono text-xs"
             />
             {parseError && (
-              <p className="text-sm text-red-600 dark:text-red-400">
-                {t('parseError')}
-              </p>
+              <p className="text-sm font-medium text-red-500">{t('parseError')}</p>
             )}
-            <button
-              onClick={onContinue}
-              disabled={!pasted.trim()}
-              className="rounded-lg bg-neutral-900 px-5 py-2.5 font-medium text-white disabled:opacity-50 dark:bg-white dark:text-neutral-900"
-            >
+            <Button onClick={onContinue} disabled={!pasted.trim()}>
               {t('parse')}
-            </button>
-          </section>
+            </Button>
+          </Card>
         </div>
       )}
 
@@ -270,18 +268,13 @@ export default function NewPlanPage() {
         <div className="space-y-4">
           <PlanReviewForm initial={parsed} saving={saving} onApprove={onApprove} />
           {saveError && (
-            <p className="text-sm text-red-600 dark:text-red-400">
-              {t('saveError')}
-            </p>
+            <p className="text-sm font-medium text-red-500">{t('saveError')}</p>
           )}
-          <button
-            onClick={() => setStage('intake')}
-            className="text-sm text-neutral-500 underline underline-offset-4"
-          >
+          <Button variant="ghost" size="sm" onClick={() => setStage('intake')}>
             ← {t('back')}
-          </button>
+          </Button>
         </div>
       )}
-    </main>
+    </AppShell>
   );
 }

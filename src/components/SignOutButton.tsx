@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/client';
+import Button from '@/components/ui/Button';
 
 export default function SignOutButton() {
   const t = useTranslations('nav');
@@ -16,11 +17,8 @@ export default function SignOutButton() {
   }
 
   return (
-    <button
-      onClick={signOut}
-      className="text-sm font-medium text-neutral-600 underline underline-offset-4 dark:text-neutral-400"
-    >
+    <Button variant="ghost" size="sm" onClick={signOut}>
       {t('signOut')}
-    </button>
+    </Button>
   );
 }

@@ -71,6 +71,25 @@
     "noPlan": "您尚未建立任何計畫。",
     "createPlan": "建立您的計畫"
   },
+  "calendar": {
+    "title": "本週",
+    "loading": "正在載入您的一週…",
+    "empty": "尚未有啟用中的計畫。"
+  },
+  "day": {
+    "loading": "正在載入您的訓練…",
+    "backToDashboard": "返回儀表板",
+    "progress": "已完成 {done}/{total}",
+    "markDone": "標記完成",
+    "setsReps": "{sets} × {reps}",
+    "rest": "休息 {sec} 秒",
+    "emptyRest": "休息／恢復日，今天放輕鬆。",
+    "emptyNoExercises": "這一天沒有安排任何動作。",
+    "emptyNoPlan": "這一天沒有啟用中的計畫。",
+    "detailMuscle": "主要肌群",
+    "detailHowTo": "動作要領",
+    "detailNotes": "備註"
+  },
   "plan": {
     "newTitle": "建立您的計畫",
     "step1Title": "1. 複製這段提示詞",
@@ -113,6 +132,11 @@
     "label": "語言",
     "en": "English",
     "zh-Hant": "繁體中文"
+  },
+  "theme": {
+    "toggle": "切換淺色／深色主題",
+    "light": "淺色",
+    "dark": "深色"
   },
   "common": {
     "save": "儲存",

@@ -5,6 +5,13 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { lbToKg, inchToCm, type UnitSystem } from '@/lib/units';
+import AppShell from '@/components/ui/AppShell';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import Field from '@/components/ui/Field';
+import Select from '@/components/ui/Select';
+import Input from '@/components/ui/Input';
+import { cn } from '@/lib/cn';
 
 const GOALS = ['recomp', 'fat_loss', 'muscle_gain'] as const;
 const SEXES = ['male', 'female', 'other'] as const;
@@ -76,10 +83,11 @@ export default function OnboardingPage() {
       router.push('/login');
       return;
     }
+    // Upsert (not update): the profiles row may not exist yet if the sign-up
+    // trigger didn't run, and a plain update would silently affect zero rows.
     const { error } = await supabase
       .from('profiles')
-      .update({ ...profile, updated_at: new Date().toISOString() })
-      .eq('id', user.id);
+      .upsert({ id: user.id, ...profile, updated_at: new Date().toISOString() });
 
     if (error) {
       setSaving(false);
@@ -93,100 +101,135 @@ export default function OnboardingPage() {
   const weightUnit = units === 'imperial' ? 'lb' : 'kg';
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-lg flex-col gap-6 px-6 py-12">
-      <header className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {t('subtitle')}
-        </p>
-      </header>
+    <AppShell headerVariant="minimal" size="md">
+      <div className="mx-auto flex max-w-lg flex-col gap-6">
+        <header className="space-y-1">
+          <h1 className="font-display text-3xl font-bold tracking-tight">{t('title')}</h1>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">{t('subtitle')}</p>
+        </header>
 
-      <div className="flex items-center gap-2 text-sm">
-        <span className="text-neutral-500">{t('unitSystem')}:</span>
-        <UnitToggle units={units} onChange={setUnits} />
+        <Card className="flex flex-col gap-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              {t('unitSystem')}
+            </span>
+            <UnitToggle units={units} onChange={setUnits} />
+          </div>
+
+          <form onSubmit={onSubmit} className="grid grid-cols-2 gap-4">
+            <Field label={t('goal')} full>
+              <Select value={form.goal} onChange={(e) => set('goal', e.target.value)}>
+                {GOALS.map((g) => (
+                  <option key={g} value={g}>
+                    {t(`goalOptions.${g}`)}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+
+            <Field label={t('sex')}>
+              <Select value={form.sex} onChange={(e) => set('sex', e.target.value)}>
+                {SEXES.map((s) => (
+                  <option key={s} value={s}>
+                    {t(`sexOptions.${s}`)}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+
+            <Field label={t('age')}>
+              <Input
+                type="number"
+                value={form.age}
+                min={12}
+                max={100}
+                onChange={(e) => set('age', Number(e.target.value))}
+              />
+            </Field>
+
+            <Field label={`${t('height')} (${heightUnit})`}>
+              <Input
+                type="number"
+                value={form.height}
+                min={80}
+                max={260}
+                onChange={(e) => set('height', Number(e.target.value))}
+              />
+            </Field>
+
+            <Field label={`${t('weight')} (${weightUnit})`}>
+              <Input
+                type="number"
+                value={form.weight}
+                min={30}
+                max={400}
+                onChange={(e) => set('weight', Number(e.target.value))}
+              />
+            </Field>
+
+            <Field label={t('daysPerWeek')}>
+              <Input
+                type="number"
+                value={form.days_per_week}
+                min={1}
+                max={7}
+                onChange={(e) => set('days_per_week', Number(e.target.value))}
+              />
+            </Field>
+
+            <Field label={t('sessionMinutes')}>
+              <Input
+                type="number"
+                value={form.session_minutes}
+                min={15}
+                max={180}
+                onChange={(e) => set('session_minutes', Number(e.target.value))}
+              />
+            </Field>
+
+            <Field label={t('experience')}>
+              <Select
+                value={form.experience}
+                onChange={(e) => set('experience', e.target.value)}
+              >
+                {EXPERIENCE.map((x) => (
+                  <option key={x} value={x}>
+                    {t(`experienceOptions.${x}`)}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+
+            <Field label={t('equipment')}>
+              <Select
+                value={form.equipment}
+                onChange={(e) => set('equipment', e.target.value)}
+              >
+                {EQUIPMENT.map((x) => (
+                  <option key={x} value={x}>
+                    {t(`equipmentOptions.${x}`)}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+
+            <Field label={t('limitations')} full>
+              <Input
+                type="text"
+                value={form.limitations}
+                onChange={(e) => set('limitations', e.target.value)}
+              />
+            </Field>
+
+            <div className="col-span-2 pt-2">
+              <Button type="submit" loading={saving} size="lg" className="w-full">
+                {saving ? t('saving') : t('submit')}
+              </Button>
+            </div>
+          </form>
+        </Card>
       </div>
-
-      <form onSubmit={onSubmit} className="grid grid-cols-2 gap-4">
-        <Field label={t('goal')} full>
-          <Select value={form.goal} onChange={(v) => set('goal', v)}>
-            {GOALS.map((g) => (
-              <option key={g} value={g}>
-                {t(`goalOptions.${g}`)}
-              </option>
-            ))}
-          </Select>
-        </Field>
-
-        <Field label={t('sex')}>
-          <Select value={form.sex} onChange={(v) => set('sex', v)}>
-            {SEXES.map((s) => (
-              <option key={s} value={s}>
-                {t(`sexOptions.${s}`)}
-              </option>
-            ))}
-          </Select>
-        </Field>
-
-        <Field label={t('age')}>
-          <Num value={form.age} onChange={(v) => set('age', v)} min={12} max={100} />
-        </Field>
-
-        <Field label={`${t('height')} (${heightUnit})`}>
-          <Num value={form.height} onChange={(v) => set('height', v)} min={80} max={260} />
-        </Field>
-
-        <Field label={`${t('weight')} (${weightUnit})`}>
-          <Num value={form.weight} onChange={(v) => set('weight', v)} min={30} max={400} />
-        </Field>
-
-        <Field label={t('daysPerWeek')}>
-          <Num value={form.days_per_week} onChange={(v) => set('days_per_week', v)} min={1} max={7} />
-        </Field>
-
-        <Field label={t('sessionMinutes')}>
-          <Num value={form.session_minutes} onChange={(v) => set('session_minutes', v)} min={15} max={180} />
-        </Field>
-
-        <Field label={t('experience')}>
-          <Select value={form.experience} onChange={(v) => set('experience', v)}>
-            {EXPERIENCE.map((x) => (
-              <option key={x} value={x}>
-                {t(`experienceOptions.${x}`)}
-              </option>
-            ))}
-          </Select>
-        </Field>
-
-        <Field label={t('equipment')}>
-          <Select value={form.equipment} onChange={(v) => set('equipment', v)}>
-            {EQUIPMENT.map((x) => (
-              <option key={x} value={x}>
-                {t(`equipmentOptions.${x}`)}
-              </option>
-            ))}
-          </Select>
-        </Field>
-
-        <Field label={t('limitations')} full>
-          <input
-            type="text"
-            value={form.limitations}
-            onChange={(e) => set('limitations', e.target.value)}
-            className="w-full rounded-lg border border-neutral-300 bg-transparent px-3 py-2 dark:border-neutral-700"
-          />
-        </Field>
-
-        <div className="col-span-2 pt-2">
-          <button
-            type="submit"
-            disabled={saving}
-            className="w-full rounded-lg bg-neutral-900 px-5 py-3 font-medium text-white disabled:opacity-60 dark:bg-white dark:text-neutral-900"
-          >
-            {saving ? t('saving') : t('submit')}
-          </button>
-        </div>
-      </form>
-    </main>
+    </AppShell>
   );
 }
 
@@ -198,82 +241,23 @@ function UnitToggle({
   onChange: (u: UnitSystem) => void;
 }) {
   return (
-    <div className="inline-flex overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-700">
+    <div className="inline-flex rounded-full border border-neutral-200 bg-white p-0.5 dark:border-neutral-700 dark:bg-neutral-800">
       {(['metric', 'imperial'] as const).map((u) => (
         <button
           key={u}
           type="button"
           onClick={() => onChange(u)}
-          className={
-            'px-3 py-1 ' +
-            (units === u
-              ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900'
-              : 'text-neutral-600 dark:text-neutral-400')
-          }
+          aria-pressed={units === u}
+          className={cn(
+            'rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand',
+            units === u
+              ? 'bg-brand text-white'
+              : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100'
+          )}
         >
           {u === 'metric' ? 'kg/cm' : 'lb/in'}
         </button>
       ))}
     </div>
-  );
-}
-
-function Field({
-  label,
-  children,
-  full
-}: {
-  label: string;
-  children: React.ReactNode;
-  full?: boolean;
-}) {
-  return (
-    <label className={`flex flex-col gap-1 text-sm ${full ? 'col-span-2' : ''}`}>
-      <span className="text-neutral-600 dark:text-neutral-400">{label}</span>
-      {children}
-    </label>
-  );
-}
-
-function Select({
-  value,
-  onChange,
-  children
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full rounded-lg border border-neutral-300 bg-transparent px-3 py-2 dark:border-neutral-700"
-    >
-      {children}
-    </select>
-  );
-}
-
-function Num({
-  value,
-  onChange,
-  min,
-  max
-}: {
-  value: number;
-  onChange: (v: number) => void;
-  min?: number;
-  max?: number;
-}) {
-  return (
-    <input
-      type="number"
-      value={value}
-      min={min}
-      max={max}
-      onChange={(e) => onChange(Number(e.target.value))}
-      className="w-full rounded-lg border border-neutral-300 bg-transparent px-3 py-2 dark:border-neutral-700"
-    />
   );
 }
