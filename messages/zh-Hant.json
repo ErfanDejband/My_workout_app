@@ -71,6 +71,40 @@
     "noPlan": "您尚未建立任何計畫。",
     "createPlan": "建立您的計畫"
   },
+  "plan": {
+    "newTitle": "建立您的計畫",
+    "step1Title": "1. 複製這段提示詞",
+    "step1Intro": "把它貼到 ChatGPT、Gemini、Claude 或任何 AI 對話中，然後複製完整回覆。",
+    "copyPrompt": "複製提示詞",
+    "copied": "已複製！",
+    "step2Title": "2. 貼上 AI 的回覆",
+    "pastePlaceholder": "在此貼上 AI 的回覆…",
+    "parse": "繼續",
+    "parseError": "我們無法從中讀取計畫。請確認您複製了完整的回覆（應為 JSON），再試一次。",
+    "reviewTitle": "3. 檢視並確認",
+    "reviewIntro": "我們已依 AI 的回覆填好內容。請修改任何有誤之處，然後確認。",
+    "summary": "摘要",
+    "approve": "確認並儲存",
+    "saving": "儲存中…",
+    "saveError": "無法儲存您的計畫，請再試一次。",
+    "type": "類型",
+    "types": {
+      "workout": "訓練",
+      "rest": "休息",
+      "active_recovery": "動態恢復"
+    },
+    "exercise": "動作",
+    "sets": "組數",
+    "reps": "次數",
+    "rest": "休息（秒）",
+    "addExercise": "新增動作",
+    "remove": "移除",
+    "restDay": "休息／恢復日",
+    "loadingProfile": "載入中…",
+    "needProfile": "請先完成您的個人資料。",
+    "goToOnboarding": "完成個人資料",
+    "back": "返回"
+  },
   "units": {
     "metric": "公制（公斤、公分）",
     "imperial": "英制（磅、英寸）"

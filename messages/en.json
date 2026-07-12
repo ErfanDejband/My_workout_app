@@ -71,6 +71,40 @@
     "noPlan": "You don't have a plan yet.",
     "createPlan": "Create your plan"
   },
+  "plan": {
+    "newTitle": "Create your plan",
+    "step1Title": "1. Copy this prompt",
+    "step1Intro": "Paste it into ChatGPT, Gemini, Claude, or any AI chat, then copy the full reply.",
+    "copyPrompt": "Copy prompt",
+    "copied": "Copied!",
+    "step2Title": "2. Paste the AI's reply",
+    "pastePlaceholder": "Paste the AI response here…",
+    "parse": "Continue",
+    "parseError": "We couldn't read a plan from that. Make sure you copied the whole reply (it should be JSON), then try again.",
+    "reviewTitle": "3. Review & confirm",
+    "reviewIntro": "We filled this in from the AI's reply. Edit anything that's off, then approve.",
+    "summary": "Summary",
+    "approve": "Approve & save",
+    "saving": "Saving…",
+    "saveError": "Couldn't save your plan. Please try again.",
+    "type": "Type",
+    "types": {
+      "workout": "Workout",
+      "rest": "Rest",
+      "active_recovery": "Active recovery"
+    },
+    "exercise": "Exercise",
+    "sets": "Sets",
+    "reps": "Reps",
+    "rest": "Rest (s)",
+    "addExercise": "Add exercise",
+    "remove": "Remove",
+    "restDay": "Rest / recovery day",
+    "loadingProfile": "Loading…",
+    "needProfile": "Please complete your profile first.",
+    "goToOnboarding": "Complete profile",
+    "back": "Back"
+  },
   "units": {
     "metric": "Metric (kg, cm)",
     "imperial": "Imperial (lb, in)"

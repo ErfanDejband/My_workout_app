@@ -14,7 +14,16 @@ export async function GET(request: Request) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+      // Behind Vercel's proxy the request origin is internal; prefer the
+      // forwarded host so we redirect to the real public URL, not localhost.
+      const forwardedHost = request.headers.get('x-forwarded-host');
+      const isLocal = process.env.NODE_ENV === 'development';
+      const base = isLocal
+        ? origin
+        : forwardedHost
+          ? `https://${forwardedHost}`
+          : origin;
+      return NextResponse.redirect(`${base}${next}`);
     }
   }
 
