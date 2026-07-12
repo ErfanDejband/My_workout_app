@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
-import { createClient } from '@/lib/supabase/client';
 import { lbToKg, inchToCm, type UnitSystem } from '@/lib/units';
+import { saveProfile } from './actions';
 import AppShell from '@/components/ui/AppShell';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -75,23 +75,15 @@ export default function OnboardingPage() {
       return;
     }
 
-    const supabase = createClient();
-    const {
-      data: { user }
-    } = await supabase.auth.getUser();
-    if (!user) {
-      router.push('/login');
-      return;
-    }
-    // Upsert (not update): the profiles row may not exist yet if the sign-up
-    // trigger didn't run, and a plain update would silently affect zero rows.
-    const { error } = await supabase
-      .from('profiles')
-      .upsert({ id: user.id, ...profile, updated_at: new Date().toISOString() });
-
-    if (error) {
+    // Save on the server (uses the validated session cookie → RLS passes).
+    const res = await saveProfile(profile);
+    if (!res.ok) {
       setSaving(false);
-      alert(error.message);
+      if (res.error === 'not_authenticated') {
+        router.push('/login');
+        return;
+      }
+      alert(res.error);
       return;
     }
     router.push('/dashboard');
